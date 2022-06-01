@@ -19,6 +19,7 @@ from flask_wtf import FlaskForm
 from forms import *
 from flask_migrate import Migrate
 import sys
+from datetime import datetime
 #----------------------------------------------------------------------------#
 # App Config.
 #----------------------------------------------------------------------------#
@@ -95,12 +96,6 @@ def format_datetime(value, format='medium'):
   elif format == 'medium':
       format="EE MM, dd, y h:mma"
   return babel.dates.format_datetime(date, format)
-  # def format_datetime(value, format='medium'):
-  #   # instead of just date = dateutil.parser.parse(value)
-  #   if isinstance(value, str):
-  #       date = dateutil.parser.parse(value)
-  #   else:
-  #       date = value
 
 app.jinja_env.filters['datetime'] = format_datetime
 
@@ -181,6 +176,7 @@ def show_venue(venue_id):
           "name": venue.name,
           "genres": venue.genres,
           "city": venue.city,
+          "address": venue.address,
           "state": venue.state,
           "phone": venue.phone,
           "website": venue.website_link,
@@ -219,7 +215,6 @@ def create_venue_submission():
       website_link = form.website_link.data
       seeking_talent = form.seeking_talent.data
       seeking_description = form.seeking_description.data
-      seeking_talent = form.seeking_talent.data
 
       venue = Venue(name=name, genres=genres, address=address, city=city, state=state, phone=phone, website_link=website_link,
       facebook_link=facebook_link, seeking_talent=seeking_talent, seeking_description=seeking_description,  image_link=image_link)

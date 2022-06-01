@@ -83,7 +83,7 @@ class VenueForm(FlaskForm):
         'address', validators=[DataRequired()]
     )
     phone = StringField(
-        'phone'
+        'phone', validators=[DataRequired()]
     )
     image_link = StringField(
         'image_link'
@@ -120,7 +120,7 @@ class VenueForm(FlaskForm):
         'website_link'
     )
 
-    seeking_venue = BooleanField( 'seeking_talent' )
+    seeking_talent = BooleanField( 'seeking_talent' )
 
     seeking_description = StringField(
         'seeking_description'
@@ -196,7 +196,7 @@ class ArtistForm(FlaskForm):
     )
     phone = StringField(
         # TODO implement validation logic for phone 
-        'phone'
+        'phone', validators=[DataRequired()]
     )
     image_link = StringField(
         'image_link'
